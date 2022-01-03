@@ -18,5 +18,9 @@
   "homepage": "https://github.com/JohnPac15/team-profile#readme",
   "devDependencies": {
     "jest": "^27.4.5"
+  },
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "inquirer": "^8.2.0"
   }
 }
