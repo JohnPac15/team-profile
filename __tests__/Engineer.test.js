@@ -21,6 +21,6 @@ test('testing for github in Engineer', () => {
     
     const github = 'johnpac15@github.com'
 
-    expect(engineer.getGithub(github)).toEqual(expect.any(String))
+    expect(engineer.getGithub(github)).toEqual(github)
 
 })
