@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+const Manager = require('../lib/Manager')
+const writeFile = require('../src/write')
+
+
+const generateHtml = function(incomingData) {
+    console.log(incomingData, 'inside generateHtml()')
+    return(
+    `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -12,10 +19,11 @@
         </header>
 
         <section>
-            
+            ${incomingData}
         </section>
         
     </body>
-    </html>
-        
-            
+    </html>`)
+}
+
+module.exports = generateHtml
