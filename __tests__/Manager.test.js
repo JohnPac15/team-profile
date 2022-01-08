@@ -14,10 +14,9 @@ test("checking to see it the manager has all the right info", () => {
 
 describe("office", () => {
   test("testing for office number", () => {
-    const manager = new Manager("John", 1, "john@me.com");
+    const manager = new Manager("John", 1, "john@me.com", 4);
 
-    expect(manager.findOffice(1)).toBeTruthy();
-    expect(manager.findOffice(0)).toBeFalsy();
+    expect(manager.findOffice()).toBeTruthy();
   });
 });
 

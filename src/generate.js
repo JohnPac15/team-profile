@@ -1,6 +1,6 @@
 
 const generateHtml = function(incomingData) {
-    console.log(incomingData)
+
     return(
     `<!DOCTYPE html>
     <html lang="en">

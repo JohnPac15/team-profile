@@ -1,6 +1,13 @@
+body{
+    background-color: gray;
+}
 .header {
   border: 3px solid black;
   text-align: center;
+  font-size: 25px;
+  border-radius: 25px;
+  background: white;
+  opacity: 60%;
 }
 
 .team {
@@ -12,10 +19,17 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: center;
+  border-radius: 26px;
+  background: black;
+  opacity: 60%;
+  text-decoration: none;
 }
 .manager {
   padding: 1%;
   border: 3px solid lime;
+  background: white;
+  margin: 1%;
+  border-radius: 50px;
 }
 .manager h2{
   text-align: center;
@@ -24,9 +38,13 @@
 .manager h3{
     text-align: center;
 }
+
 .engineer {
   padding: 1%;
   border: 3px solid yellow;
+  background: white;
+  margin: 1%;
+  border-radius: 50px;
 }
 .engineer h2{
   text-align: center;
@@ -35,9 +53,13 @@
 .engineer h3{
     text-align: center;
 }
+
 .intern {
   padding: 1%;
   border: 3px solid pink;
+  background: white;
+  margin: 1%;
+  border-radius: 50px;
 }
 .intern h2{
   text-align: center;
@@ -47,7 +69,21 @@
     text-align: center;
 }
 
+.email {
+    text-decoration: none;
+    color: black;
+}
+
+.github{
+    text-decoration: none;
+    color: black;
+}
+
 .footer {
-  border: 3px solid red;
-  text-align: center;
+    border: 3px solid black;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 25px;
+    background: white;
+    opacity: 60%;
 }

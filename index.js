@@ -36,7 +36,7 @@ const init = () => {
       {
         type: "input",
         name: "office",
-        message: "Select which office this manager belongs too",
+        message: "Office number?",
       },
       {
         type: "confirm",
