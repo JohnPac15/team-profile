@@ -5,13 +5,14 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require('./lib/Intern')
 
-const generateHtml = require('./src/generate')
+const generateHtml = require('./src/generate');
+const writeFile = require("./src/write");
 
 var myTeamMembers = [];
 
-const endAppMessage = function () {
-  console.log(myTeamMembers)
-  generateHtml(myTeamMembers)
+const endGame = function (data) {
+  let newHTML = generateHtml(data)
+  writeFile(newHTML)
 };
 
 const init = () => {
@@ -54,9 +55,9 @@ const init = () => {
         jobSelect();
       } else {
         console.log("-------------------------");
-        console.log("Done, No teammates to add");
+        console.log("Done, No more teammates to add");
         console.log("-------------------------");
-        endAppMessage();
+        seperateArry();
       }
     });
 };
@@ -110,9 +111,9 @@ const jobSelect = (data) => {
             jobSelect();
           } else {
             console.log("-------------------------");
-            console.log("Done, No teammates to add");
+            console.log("Done, No more teammates to add");
             console.log("-------------------------");
-            endAppMessage();
+            seperateArry();
           }
         });
       } else {
@@ -153,13 +154,18 @@ const jobSelect = (data) => {
               jobSelect();
             } else {
               console.log("-------------------------");
-              console.log("Done, No teammates to add");
+              console.log("Done, No more teammates to add");
               console.log("-------------------------");
-              endAppMessage();
+              seperateArry();
             }
           });
       }
   })
+}
+
+const seperateArry = () => {
+  let newString = myTeamMembers.join("")
+  endGame(newString)
 }
 
 init()

@@ -5,7 +5,7 @@ const generateHtml = require('../src/generate')
 
 const writeFile = (fileContent) => {
     return new Promise((resolve, reject) => {
-      fs.appendFile("./src/index.html", fileContent, (err) => {
+      fs.appendFile("./output/team.html", fileContent, (err) => {
         if (err) {
           reject(err);
           return;
