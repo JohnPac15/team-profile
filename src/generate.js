@@ -1,9 +1,6 @@
-const Manager = require('../lib/Manager')
-const writeFile = require('../src/write')
-
 
 const generateHtml = function(incomingData) {
-    console.log(incomingData, 'inside generateHtml()')
+    console.log(incomingData)
     return(
     `<!DOCTYPE html>
     <html lang="en">

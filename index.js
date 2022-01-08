@@ -1,78 +1,165 @@
 const inquirer = require("inquirer");
+
 const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require('./lib/Intern')
 
-firstQuestion = [
-  {
-    type: "list",
-    name: "employee",
-    message: "Would you like to add an Employee? ",
-    choices: ["Yes", "No"],
-  },
-];
-SecondQuestion = [
-  {
-    type: "input",
-    name: "name",
-    message: "What is the name of the employee",
-  },
-  {
-    type: "input",
-    name: "id",
-    message: "Enter their employee id(Numbers Only Please)",
-  },
-  {
-    type: "input",
-    name: "email",
-    message: "Please enter thier email",
-  },
-];
+const generateHtml = require('./src/generate')
 
-function init() {
-  inquirer.prompt(firstQuestion).then(
-    (questionData = (questionData) => {
-      if (questionData.employee === "Yes") {
-        inquirer.prompt(SecondQuestion).then((data) => new Employee(data.name, data.questionData, data.email));
+var myTeamMembers = [];
 
+const endAppMessage = function () {
+  console.log(myTeamMembers)
+  generateHtml(myTeamMembers)
+};
+
+const init = () => {
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the name of the Manager",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter their employee id ",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please enter thier email",
+      },
+      {
+        type: "input",
+        name: "office",
+        message: "Select which office this manager belongs too",
+      },
+      {
+        type: "confirm",
+        name: "addTeamMate",
+        message: "Would you like to add an Team member? ",
+        default: false,
+      },
+    ])
+    .then((data) => {
+      myTeamMembers.push(new Manager(data.name, data.id, data.email, data.office).managerHTML());
+
+      if (data.addTeamMate) {
+        console.log("-------------------------");
+        console.log("Adding another teammate");
+        console.log("-------------------------");
+        jobSelect();
       } else {
-        console.log("Thank You and have a nice day!");
+        console.log("-------------------------");
+        console.log("Done, No teammates to add");
+        console.log("-------------------------");
+        endAppMessage();
       }
-    })
-  );
+    });
+};
 
-  function selectJobType(){
-      inquirer.prompt([
-        {
-            type: 'list',
-            name: 'job',
-            message: 'Please select a Job title',
-            choices: ['Manager', 'Engineer', 'Intern'],
-        },
-      ])
-      .then(jobData => {
-          if(jobData.job === "Manager"){
-              
+const jobSelect = (data) => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "job",
+        message: "Please select a Job title",
+        choices: ["Engineer", "Intern"],
+      },
+    ])
+    .then((jobType) => {
+      if (jobType.job === "Engineer") {
+        return inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "name",
+            message: "What is the name of the Engineer",
+          },
+          {
+            type: "input",
+            name: "id",
+            message: "Enter their employee id ",
+          },
+          {
+            type: "input",
+            name: "email",
+            message: "Please enter thier email",
+          },
+          {
+            type: "input",
+            name: "github",
+            message: "What is your Github username?",
+          },
+          {
+            type: "confirm",
+            name: "addTeamMate",
+            message: "Would you like to add an Team member? ",
+            default: false,
+          },
+        ]).then(data => {
+          myTeamMembers.push(new Engineer(data.name, data.id, data.email, data.github).engineerHTML())
+          if (data.addTeamMate) {
+            console.log("-------------------------");
+            console.log("Adding another teammate");
+            console.log("-------------------------");
+            jobSelect();
+          } else {
+            console.log("-------------------------");
+            console.log("Done, No teammates to add");
+            console.log("-------------------------");
+            endAppMessage();
           }
-          if(jobData.job === 'Engineer'){
-            return 'Engineer #2'
-        }
-    
-        if(jobData.job === 'Intern'){
-            return 'Intern #3'
-        }
-      })
-  }
+        });
+      } else {
+          return inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "name",
+              message: "What is the name of the Intern",
+            },
+            {
+              type: "input",
+              name: "id",
+              message: "Enter their employee id ",
+            },
+            {
+              type: "input",
+              name: "email",
+              message: "Please enter thier email",
+            },
+            {
+              type: "input",
+              name: "school",
+              message: "What School is the Intern from?",
+            },
+            {
+              type: "confirm",
+              name: "addTeamMate",
+              message: "Would you like to add an Team member? ",
+              default: false,
+            },
+          ]).then(data => {
+            myTeamMembers.push(new Intern(data.name, data.id, data.email, data.school).internHTML())
+            if (data.addTeamMate) {
+              console.log("-------------------------");
+              console.log("Adding another teammate");
+              console.log("-------------------------");
+              jobSelect();
+            } else {
+              console.log("-------------------------");
+              console.log("Done, No teammates to add");
+              console.log("-------------------------");
+              endAppMessage();
+            }
+          });
+      }
+  })
 }
-init();
-// SecondQuestion = [
-//     {
-//         type: 'list',
-//         name: 'job',
-//         message: 'Please select a Job title',
-//         choices: ['Manager', 'Engineer', 'Intern'],
-//     },
-// ]
 
-
-// function runAgain() {
-//     inquirer.prompt(SecondQuestion)
-// }
+init()
