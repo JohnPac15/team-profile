@@ -21,7 +21,7 @@ const generateHtml = function(incomingData) {
         </section>
 
     <footer class="footer">
-        <h1>Made By John Pacini</h1>
+        <h1><a href="https://github.com/JohnPac15" class="github">Made By John Pacini</a></h1>
     </footer>   
     </body>
     </html>`)
